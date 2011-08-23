@@ -28,7 +28,9 @@
         $(info_window_selector).hide();
 
         places = getPlaces();
-        bounds = getBounds(doUpdate);
+        if (settings.map_config == null || settings.map_config.center == null) {
+          bounds = getBounds(doUpdate);
+        }
 
         if (doUpdate){
           gmarkers = {};
@@ -78,7 +80,8 @@
             },
             mapTypeControl: false,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
-            zoom: 9
+            center: (settings.default_center ? new google.maps.LatLng(settings.default_center.lat, settings.default_center.lng) : null),
+            zoom: (settings.zoom_level ? settings.zoom_level : 9)
           });
         }
         map.fitBounds(bounds);
