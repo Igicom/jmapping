@@ -85,7 +85,11 @@
             zoom: (settings.zoom_level ? settings.zoom_level : 9)
           });
         }
-        map.fitBounds(bounds);
+        
+        if (settings.default_center == null) {
+          map.fitBounds(bounds);
+        }
+                
         if (settings.force_zoom_level){
           map.setZoom(settings.force_zoom_level);
         }
