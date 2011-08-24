@@ -47,12 +47,13 @@
         }
 
         places.each(function(){
-          var marker = createMarker(this);
+          var element = this;
+          var marker = createMarker(element);
           if (!(settings.link_selector === false)){
-            setupLink(this);
+            setupLink(element);
           }
-          $(document).trigger('markerCreated.jMapping', [marker]);
-        });
+          $(document).trigger('markerCreated.jMapping', [marker, element]);
+        });        
         
         if (doUpdate){
           updateMarkerManager();
